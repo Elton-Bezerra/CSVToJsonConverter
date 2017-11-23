@@ -12,14 +12,14 @@ const converter = function(callback){
 		buff.push(json);		
 	})
 	.on('end', (error) =>{
-		// console.log(buff);
+		if(error) console.log(error);
 		callback(buff);
 	});
 }
 
 const gravar = function(json){	
 	const folderName = uuidv1();
-	fs.mkdir(folderName);
+	fs.mkdirSync(folderName);
 	fs.writeFileSync(path.join(__dirname, folderName, 'customer-data-solution.json'), JSON.stringify(json, null, '  '));		
 }
 
